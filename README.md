@@ -1,5 +1,9 @@
 # Rocrail Docker
-Run rocrail on a Docker containter
+
+Run [rocrail](https://wiki.rocrail.net) on a Docker containter.
+
+This Docker image will help run rocrail on linux distibutions and
+environments not relased by rocrail.
 
 ## How to use it
 
