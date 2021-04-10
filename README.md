@@ -7,7 +7,7 @@ environments not relased by rocrail.
 
 ## How to use it
 
-*  Build the image (first time, or if ther is a new rocrail version).
+*  Build the image (first time, or if there is a new rocrail version).
 ```
    docker build -t rocrail .
 ```
