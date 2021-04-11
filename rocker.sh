@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
-export DOCKER=${/usr/bin/docker:${DOCKER}}
+export DOCKER=${DOCKER:-/usr/bin/docker}
 export ROCRAIL_DIR=${ROCRAIL_DIR:-${HOME}/rocrail}
-export X11_SOCKET=${X11_SOCKER:-/tmp/.X11-unix}
+export X11_SOCKET=${X11_SOCKET:-/tmp/.X11-unix}
 # Create symlinks if needed
 if [ ! -L ${ROCRAIL_DIR}/svg ]
 then
