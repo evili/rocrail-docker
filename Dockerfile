@@ -14,6 +14,9 @@ ENV ROCRAIL_ZIP=/tmp/rocrail.zip
 ENV ROCRAIL_BASE=/opt/rocrail
 ENV ROCRAIL_URL https://launchpad.net/rocrail/trunk/2.1/+download/Rocrail-${ROCRAIL_VERSION}-Ubuntu${UBUNTU_MAJOR}${UBUNTU_MINOR}-AMD64.zip
 RUN update-ca-certificates
+RUN apt-get purge
+RUN apt-get autoclean
+RUN apt-get clean all
 RUN wget -O ${ROCRAIL_ZIP} ${ROCRAIL_URL}
 RUN mkdir -pv ${ROCRAIL_BASE} && cd ${ROCRAIL_BASE} &&  unzip ${ROCRAIL_ZIP}
 
