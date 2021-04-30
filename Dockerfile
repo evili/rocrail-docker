@@ -30,7 +30,7 @@ ENV ROCRAIL_URL https://launchpad.net/rocrail/trunk/2.1/+download/Rocrail-${ROCR
 RUN wget --no-verbose -O ${ROCRAIL_ZIP} ${ROCRAIL_URL}
 RUN mkdir -pv ${ROCRAIL_BASE}
 WORKDIR    ${ROCRAIL_BASE}
-RUN    unzip ${ROCRAIL_ZIP}
+RUN unzip -q ${ROCRAIL_ZIP}
 
 RUN mkdir -pv /rocrail
 VOLUME /rocrail
