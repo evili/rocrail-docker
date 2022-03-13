@@ -42,9 +42,15 @@ WORKDIR /rocrail
 
 COPY entrypoint.sh /
 
-EXPOSE 161
-EXPOSE 4303
-EXPOSE 8051
-EXPOSE 8088
+# SNMP
+EXPOSE 161/tcp
+EXPOSE 161/udp
+# SRCP
+EXPOSE 4303/tcp
+# Rocrail
+EXPOSE 8051/tcp
+EXPOSE 8051/udp
+# RocWeb
+EXPOSE 8088/tcp
 
 ENTRYPOINT ["/usr/bin/tini", "--",  "/entrypoint.sh"]

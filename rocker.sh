@@ -13,9 +13,8 @@ then
 fi
 
 CONTAINER_ID=$(${DOCKER} container run --rm -d \
-    -u $(id -u):$(id -g) \
     --publish-all \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --volume="${X11_SOCKET}:/tmp/.X11-unix:rw" \
     --volume="${ROCRAIL_DIR}:/rocrail:rw" \
     rocrail:${ROCRAIL_VERSION} $*)
 
