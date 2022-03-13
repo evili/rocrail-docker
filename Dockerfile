@@ -42,5 +42,9 @@ WORKDIR /rocrail
 
 COPY entrypoint.sh /
 
+EXPOSE 161
+EXPOSE 4303
 EXPOSE 8051
+EXPOSE 8088
+
 ENTRYPOINT ["/usr/bin/tini", "--",  "/entrypoint.sh"]

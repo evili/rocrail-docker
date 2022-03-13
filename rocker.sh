@@ -11,9 +11,17 @@ then
 	ln -svi /opt/rocrail/svg .
 	popd
 fi
-${DOCKER} run -it --rm \
-    --env="DISPLAY" \
+
+CONTAINER_ID=$(${DOCKER} container run --rm -d \
+    -u $(id -u):$(id -g) \
     --publish-all \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --volume="${ROCRAIL_DIR}:/rocrail:rw" \
-    rocrail:${ROCRAIL_VERSION} $*
+    rocrail:${ROCRAIL_VERSION} $*)
+
+${DOCKER} container exec \
+    --env="DISPLAY=$DISPLAY" \
+    ${CONTAINER_ID} \
+    /opt/rocrail/bin/rocview -sp /opt/rocrail/bin -dp /opt/rocrail/demo
+
+${DOCKER} container stop $CONTAINER_ID
