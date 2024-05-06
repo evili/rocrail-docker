@@ -32,9 +32,10 @@ RUN wget --no-verbose -O ${ROCRAIL_ZIP} ${ROCRAIL_URL}
 RUN mkdir -pv ${ROCRAIL_BASE}
 WORKDIR    ${ROCRAIL_BASE}
 RUN unzip -q ${ROCRAIL_ZIP}
-# Unzip all themes from rocrail
-WORKDIR ${ROCRAIL_BASE}/svg/themes
-RUN /usr/bin/unzip -q -n ../\*.zip
+# It seems that rocrail comes with all unzipped
+# Unzip all themes from rocrail 
+WORKDIR ${ROCRAIL_BASE}/svg
+RUN for z in $(find . -type f -name '*.zip');do dir=$(dirname $z);echo unzip -q -n -d $dir $z;done
 
 RUN mkdir -pv /rocrail
 VOLUME /rocrail
