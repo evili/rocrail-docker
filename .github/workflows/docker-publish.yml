@@ -20,6 +20,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  DEFAULT_TAG: $(grep ROCRAIL_VERSION  Dockerfile  | head -1 | awk -F= '{print $2}')
 
 
 jobs:
