@@ -20,7 +20,6 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  DEFAULT_TAG: $(grep ROCRAIL_VERSION  Dockerfile  | head -1 | awk -F= '{print $2}')
 
 
 jobs:
@@ -96,4 +95,4 @@ jobs:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: echo "${DEFAULT_TAG}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+        run: DEFAULT_TAG=$(grep ROCRAIL_VERSION  Dockerfile  | head -1 | awk -F= '{print $2}') &&  echo "${DEFAULT_TAG}" | xargs -I {} cosign sign --yes {}@${DIGEST}
