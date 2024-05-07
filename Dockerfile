@@ -8,11 +8,14 @@ ARG DEBIAN_MAJOR
 ARG DEBIAN_MINOR
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=en_US.UTF-8
 
 # hadolint ignore=SC2046,DL3014,DL3015
 RUN apt-get update && \
-    apt-get install --no-install-recommends -qq -y bash wget unzip \
-        ca-certificates libusb-1.0-0 libwxgtk3.0-gtk3-0v5 && \
+    apt-get install --no-install-recommends -qq -y bash wget unzip locales-all \
+        libwayland-client0 libwayland-cursor0 libwayland-bin libwayland-egl1 \
+        libwayland-client++0 libwayland-client-extra++0 libwayland-cursor++0 libwayland-egl++0 \
+        ca-certificates libusb-1.0-0 libwxgtk3.0-gtk3-0v5 libwxgtk-media3.0-gtk3-0v5 && \
     update-ca-certificates && \
     apt-get purge && apt-get autoclean && apt-get clean all && \
     rm -rf /var/lib/apt/lists/*

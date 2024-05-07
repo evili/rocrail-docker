@@ -11,6 +11,10 @@ environments not relased by rocrail.
 ```
    docker build -t rocrail .
 ```
+*  You can choose the base OS distribution release and rocrail version:
+```
+  docker build --build-arg=ROCRAIL_VERSION=1234 --build-arg=DEBIAN_VERSION=12 -t rocrail .
+```
 *  Create rocrail directory (if needed):
 ```
    export ROCRAIL_DIR=${HOME}/rocrail
