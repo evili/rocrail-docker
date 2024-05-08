@@ -35,16 +35,20 @@ RUN wget --no-verbose -O ${ROCRAIL_ZIP} ${ROCRAIL_URL}
 RUN mkdir -pv ${ROCRAIL_BASE}
 WORKDIR    ${ROCRAIL_BASE}
 RUN unzip -q ${ROCRAIL_ZIP}
-# It seems that rocrail comes with all unzipped
+
 # Unzip all themes from rocrail 
 WORKDIR ${ROCRAIL_BASE}/svg
-RUN for z in $(find . -type f -name '*.zip');do dir=$(dirname $z);echo unzip -q -n -d $dir $z;done
+RUN for z in $(find . -type f -name '*.zip'); \
+    do \
+        dir=$(dirname $z); \
+        unzip -n -d $dir $z;\
+    done
+
+COPY entrypoint.sh /
 
 RUN mkdir -pv /rocrail
 VOLUME /rocrail
 WORKDIR /rocrail
-
-COPY entrypoint.sh /
 
 # SNMP
 EXPOSE 161/tcp
